@@ -27,12 +27,21 @@ class UserController extends Controller
 
     public function store(StoreUserRequest $request)
     {
-        $request = $request->validated();
-        if (in_array('photo', $request)) {
-            $request['photo'] = $request['photo']->store('images', 'public');
+        if ($request->hasFile('photo')) {
+            User::create([
+                'prefixname' => $request->prefixname,
+                'firstname' => $request->firstname,
+                'middlename' => $request->middlename,
+                'lastname' => $request->lastname,
+                'suffixname' => $request->suffixname,
+                'username' => $request->username,
+                'email' => $request->email,
+                'password' => $request->password,
+                'photo' => $request->photo->store('images', 'public')
+            ]);
+        } else {
+            User::create($request->validated());
         }
-        $request['photo'] = $request['photo']->store('images', 'public');
-        User::create($request);
         return back()->with('success', 'User added.');
     }
 
@@ -48,24 +57,41 @@ class UserController extends Controller
 
     public function update(UpdateUserRequest $request, User $user)
     {
-        $request = $request->validated();
-        if (in_array('photo', $request)) {
-            $request['photo'] = $request['photo']->store('images', 'public');
+        if ($request->hasFile('photo')) {
+            $user->update([
+                'prefixname' => $request->prefixname,
+                'firstname' => $request->firstname,
+                'middlename' => $request->middlename,
+                'lastname' => $request->lastname,
+                'suffixname' => $request->suffixname,
+                'username' => $request->username,
+                'email' => $request->email,
+                'password' => $request->password,
+                'photo' => $request->photo->store('images', 'public')
+            ]);
+        } else {
+            $user->update($request->validated());
         }
-        $user->update($request);
         return back()->with('success', 'User updated.');
     }
 
     public function destroy(User $user)
     {
         $user->delete();
-        return back()->with('success', 'User trashed.');
+        return back()->with('success', 'User moved to trash.');
     }
 
     public function trashed()
     {
-        $users = User::withTrashed()->paginate(10);
+        $users = User::onlyTrashed()->paginate(10);
 
         return view('users.trashed', compact('users'));
+    }
+
+    public function restore($id)
+    {
+        $user = User::withTrashed()->findOrFail($id);
+        $user->restore();
+        return back()->with('success', 'User restored.');
     }
 }

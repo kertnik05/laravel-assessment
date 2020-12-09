@@ -36,7 +36,13 @@
                                         <td>{{ $user->username }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>
-                                            Actions
+                                            <form class="restore" action="{{ route('users.restore', $user->id) }}" method="POST" style="display: inline">
+                                                @csrf
+                                                @method('patch')
+                                                <button type="submit" data-toggle="tooltip" data-placement="top" title="Restore" style="border: none; padding: 0; background: none;">
+                                                    <i class="fas fa-trash-restore text-success mr-2"></i>
+                                                </button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach

@@ -25,7 +25,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('users/trashed', [UserController::class, 'trashed'])->name('users.trashed');
-Route::patch('users/{user}/restore', [UserController::class, 'restore'])->name('users.restore');
-Route::delete('users/{user}/delete', [UserController::class, 'delete'])->name('users.delete');
+Route::patch('users/{id}/restore', [UserController::class, 'restore'])->name('users.restore');
+Route::delete('users/{id}/delete', [UserController::class, 'delete'])->name('users.delete');
 
 Route::resource('users', UserController::class);
