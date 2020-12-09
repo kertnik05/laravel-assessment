@@ -11,7 +11,7 @@
                         <tbody>
                             <tr>
                                 <td colspan="2">
-                                    <img src="{{ asset($user->photo) }}" alt="User Photo">
+                                    <img src="{{ asset($user->avatar) }}" alt="User Photo">
                                 </td>
                             </tr>
                             <tr>
