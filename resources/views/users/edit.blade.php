@@ -10,7 +10,26 @@
                 </div>
             @endif
             <div class="card">
-                <div class="card-header">Edit User</div>
+                <div class="card-header">
+                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                        <i class="fas fa-edit mr-2"></i>
+                        Edit User
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{{ route('home') }}">
+                            <i class="fas fa-tachometer-alt mr-2"></i>
+                            Dashboard
+                        </a>
+                        <a class="dropdown-item" href="{{ route('users.index') }}">
+                            <i class="fas fa-users mr-2"></i>
+                            Users
+                        </a>
+                        <a class="dropdown-item" href="{{ route('users.trashed') }}">
+                            <i class="fas fa-trash-alt mr-2"></i>
+                            Trashed
+                        </a>
+                    </div>
+                </div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('users.update', $user->id) }}" enctype="multipart/form-data">

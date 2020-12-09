@@ -10,13 +10,30 @@
                 </div>
             @endif
             <div class="card">
-                <div class="card-header">Users</div>
+                <div class="card-header">
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                            <i class="fas fa-users mr-2"></i>
+                            Users
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{ route('users.create') }}">
+                                <i class="fas fa-plus mr-2"></i>
+                                Add User
+                            </a>
+                            <a class="dropdown-item" href="{{ route('home') }}">
+                                <i class="fas fa-tachometer-alt mr-2"></i>
+                                Dashboard
+                            </a>
+                            <a class="dropdown-item" href="{{ route('users.trashed') }}">
+                                <i class="fas fa-trash-alt mr-2"></i>
+                                Trashed
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="card-body">
-                    <a href="{{ route('users.create') }}" class="btn btn-primary mb-3">
-                        <i class="fas fa-plus"></i>
-                        Add User
-                    </a>
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover">
                             <thead>
