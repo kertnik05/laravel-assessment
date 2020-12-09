@@ -21,9 +21,7 @@
                         <table class="table table-bordered table-hover">
                             <thead>
                                 <th>Prefix</th>
-                                <th>First Name</th>
-                                <th>Middle Name</th>
-                                <th>Last Name</th>
+                                <th>Name</th>
                                 <th>Suffix</th>
                                 <th>Username</th>
                                 <th>Email</th>
@@ -33,9 +31,7 @@
                                 @foreach($users as $user)
                                     <tr>
                                         <td>{{ $user->prefixname }}</td>
-                                        <td>{{ $user->firstname }}</td>
-                                        <td>{{ $user->middlename }}</td>
-                                        <td>{{ $user->lastname }}</td>
+                                        <td>{{ $user->fullname }}</td>
                                         <td>{{ $user->suffixname }}</td>
                                         <td>{{ $user->username }}</td>
                                         <td>{{ $user->email }}</td>
