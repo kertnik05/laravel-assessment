@@ -58,4 +58,9 @@ class User extends Authenticatable
     {
         return $this->photo;
     }
+
+    public function getMiddleinitialAttribute()
+    {
+        return $this->middlename[0].'.';
+    }
 }
