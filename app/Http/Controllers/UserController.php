@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -28,6 +28,9 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         $request = $request->validated();
+        if (in_array('photo', $request)) {
+            $request['photo'] = $request['photo']->store('images', 'public');
+        }
         $request['photo'] = $request['photo']->store('images', 'public');
         User::create($request);
         return back()->with('success', 'User added.');
@@ -40,12 +43,17 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        //
+        return view('users.edit', compact('user'));
     }
 
-    public function update(Request $request, User $user)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        //
+        $request = $request->validated();
+        if (in_array('photo', $request)) {
+            $request['photo'] = $request['photo']->store('images', 'public');
+        }
+        $user->update($request);
+        return back()->with('success', 'User updated.');
     }
 
     public function destroy(User $user)

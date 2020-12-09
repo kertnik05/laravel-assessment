@@ -38,7 +38,7 @@
                                             <a href="{{ route('users.show', $user->id) }}" role="button" style="cursor: pointer" data-toggle="tooltip" data-placement="top" title="View">
                                                 <i class="fas fa-eye text-success mr-2"></i>
                                             </a>
-                                            <a role="button" style="cursor: pointer" data-toggle="tooltip" data-placement="top" title="Edit">
+                                            <a href="{{ route('users.edit', $user->id) }}" role="button" style="cursor: pointer" data-toggle="tooltip" data-placement="top" title="Edit">
                                                 <i class="fas fa-edit text-info mr-2"></i>
                                             </a>
                                             <a role="button" style="cursor: pointer" data-toggle="tooltip" data-placement="top" title="Delete">
