@@ -4,6 +4,11 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-10">
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {!! session('success') !!}
+                </div>
+            @endif
             <div class="card">
                 <div class="card-header">Users</div>
 
@@ -41,9 +46,13 @@
                                             <a href="{{ route('users.edit', $user->id) }}" role="button" style="cursor: pointer" data-toggle="tooltip" data-placement="top" title="Edit">
                                                 <i class="fas fa-edit text-info mr-2"></i>
                                             </a>
-                                            <a role="button" style="cursor: pointer" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                <i class="fas fa-trash-alt text-danger mr-2"></i>
-                                            </a>
+                                            <form class="delete" action="{{ route('users.destroy', $user->id) }}" method="POST" style="display: inline">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" data-toggle="tooltip" data-placement="top" title="Delete" style="border: none; padding: 0; background: none;">
+                                                    <i class="fas fa-trash-alt text-danger mr-2"></i>
+                                                </button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -58,4 +67,14 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+    <script>
+        $(function() {
+            $('.delete').on('submit', function() {
+                return confirm('Are you sure you want to move this record to trash?');
+            });
+        });
+    </script>
 @endsection
