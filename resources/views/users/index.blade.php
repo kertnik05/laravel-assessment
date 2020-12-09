@@ -8,7 +8,7 @@
                 <div class="card-header">Users</div>
 
                 <div class="card-body">
-                    <a href="#" class="btn btn-primary mb-3">
+                    <a href="{{ route('users.create') }}" class="btn btn-primary mb-3">
                         <i class="fas fa-plus"></i>
                         Add User
                     </a>

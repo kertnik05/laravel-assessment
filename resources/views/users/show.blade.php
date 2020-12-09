@@ -10,6 +10,11 @@
                     <table class="table table-bordered table-hover">
                         <tbody>
                             <tr>
+                                <td colspan="2">
+                                    <img src="{{ asset($user->photo) }}" alt="User Photo">
+                                </td>
+                            </tr>
+                            <tr>
                                 <th>Prefix</th>
                                 <td>{{ $user->prefixname }}</td>
                             </tr>

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -20,12 +22,15 @@ class UserController extends Controller
 
     public function create()
     {
-        //
+        return view('users.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        //
+        $request = $request->validated();
+        $request['photo'] = $request['photo']->store('images', 'public');
+        User::create($request);
+        return back()->with('success', 'User added.');
     }
 
     public function show(User $user)
