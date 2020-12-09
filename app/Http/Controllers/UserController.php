@@ -61,4 +61,11 @@ class UserController extends Controller
         $user->delete();
         return back()->with('success', 'User trashed.');
     }
+
+    public function trashed()
+    {
+        $users = User::withTrashed()->paginate(10);
+
+        return view('users.trashed', compact('users'));
+    }
 }
