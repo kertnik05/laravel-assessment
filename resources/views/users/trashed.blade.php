@@ -43,6 +43,13 @@
                                                     <i class="fas fa-trash-restore text-success mr-2"></i>
                                                 </button>
                                             </form>
+                                            <form class="delete" action="{{ route('users.delete', $user->id) }}" method="POST" style="display: inline">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" data-toggle="tooltip" data-placement="top" title="Delete" style="border: none; padding: 0; background: none;">
+                                                    <i class="fas fa-trash-alt text-danger mr-2"></i>
+                                                </button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach

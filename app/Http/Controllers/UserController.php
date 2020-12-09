@@ -94,4 +94,11 @@ class UserController extends Controller
         $user->restore();
         return back()->with('success', 'User restored.');
     }
+    
+    public function delete($id)
+    {
+        $user = User::withTrashed()->findOrFail($id);
+        $user->forceDelete();
+        return back()->with('success', 'User deleted.');
+    }
 }
